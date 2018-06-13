@@ -1,2 +1,3 @@
-data/images/*.png
+dataset/images/
 *ckpt*
+tmp.*/
