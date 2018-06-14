@@ -39,6 +39,9 @@ tf.flags.DEFINE_string(
 tf.flags.DEFINE_float(
     'max_epsilon', 16.0, 'Maximum size of adversarial perturbation.')
 
+tf.flags.DEFINE_float(
+    'nb_iter', 10, 'Number of iteration.')
+
 tf.flags.DEFINE_integer(
     'image_width', 299, 'Width of each input images.')
 
@@ -157,7 +160,8 @@ def main(_):
     eps = 2.0 * FLAGS.max_epsilon / 255.0
     batch_shape = [FLAGS.batch_size, FLAGS.image_height, FLAGS.image_width, 3]
     num_classes = 1001
-    nb_iter = 2 # number of iteration (15 was original number)
+    nb_iter = FLAGS.nb_iter # number of iteration (15 was original number)
+    print('Numbers of iteration: %d' % nb_iter)
     tf.logging.set_verbosity(tf.logging.INFO)
     print('path1 = {0}'.format(FLAGS.checkpoint_path1))
     with tf.Graph().as_default():
