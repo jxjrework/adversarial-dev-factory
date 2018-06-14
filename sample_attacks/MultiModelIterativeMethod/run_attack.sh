@@ -14,7 +14,7 @@ then
   INPUT_DIR=$1
   OUTPUT_DIR=$2
   MAX_EPSILON=$3
-  NB_ITER=2
+  NB_ITER=10
 fi
 
 if [ $# -eq 4 ] 
