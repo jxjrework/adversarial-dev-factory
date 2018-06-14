@@ -39,7 +39,7 @@ tf.flags.DEFINE_string(
 tf.flags.DEFINE_float(
     'max_epsilon', 16.0, 'Maximum size of adversarial perturbation.')
 
-tf.flags.DEFINE_float(
+tf.flags.DEFINE_integer(
     'nb_iter', 10, 'Number of iteration.')
 
 tf.flags.DEFINE_integer(
