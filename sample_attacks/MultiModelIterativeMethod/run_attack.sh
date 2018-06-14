@@ -26,7 +26,7 @@ python attack_iter.py \
   --input_dir="${INPUT_DIR}" \
   --output_dir="${OUTPUT_DIR}" \
   --max_epsilon="${MAX_EPSILON}" \
-  --nb_iter="${NB_ITER}"
+  --nb_iter="${NB_ITER}" \
   --checkpoint_path1=inception_v3.ckpt \
   --checkpoint_path2=adv_inception_v3.ckpt \
   --checkpoint_path3=ens_adv_inception_resnet_v2.ckpt
