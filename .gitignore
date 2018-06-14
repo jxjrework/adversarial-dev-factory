@@ -2,3 +2,4 @@ dataset/images/
 *ckpt*
 tmp.*/
 *.pyc
+output/
