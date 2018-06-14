@@ -34,6 +34,8 @@ from multiprocessing.dummy import Pool as ThreadPool
 
 from PIL import Image
 
+import random
+
 try:
     from urllib.request import urlopen
 except ImportError:
@@ -46,12 +48,14 @@ def parse_args():
         description='Tool to download dataset images.')
     parser.add_argument('--input_file', required=True,
                         help='Location of dataset.csv')
+    parser.add_argument('--numbers_images', default=1000, type=int,
+                        help='Number of images to be read')
     parser.add_argument('--output_dir', required=True,
                         help='Output path to download images')
     parser.add_argument('--threads', default=multiprocessing.cpu_count() + 1,
                         help='Number of threads to use')
     args = parser.parse_args()
-    return args.input_file, args.output_dir, int(args.threads)
+    return args.input_file, args.numbers_images, args.output_dir, int(args.threads)
 
 
 def get_image(row, output_dir):
@@ -93,7 +97,7 @@ def download_image(image_id, url, x1, y1, x2, y2, output_dir):
 
 
 def main():
-    input_filename, output_dir, n_threads = parse_args()
+    input_filename, numbers_images, output_dir, n_threads = parse_args()
 
     if not os.path.isdir(output_dir):
         print("Output directory {} does not exist".format(output_dir))
@@ -102,7 +106,15 @@ def main():
     with open(input_filename) as input_file:
         reader = csv.reader(input_file)
         header_row = next(reader)
-        rows = list(reader)
+        all_rows = list(reader)
+        print(len(all_rows))
+        # In-place randomly shuffle the list
+        random.shuffle(all_rows)
+        print(len(all_rows))
+        # Get the first numbers_images 
+        print("Nmbers of images: %d" % numbers_images)
+        rows = all_rows[:numbers_images]
+
     try:
         row_idx_image_id = header_row.index('ImageId')
         row_idx_url = header_row.index('URL')
