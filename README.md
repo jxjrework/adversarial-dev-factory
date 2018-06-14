@@ -1,7 +1,7 @@
 
-# Development toolkit for participants of adversarial competition
+# Simplified development toolkit for participants of adversarial competition
 
-This is a development toolkit for the
+This is modified from the development toolkit for the
 [Competition on Adversarial Attacks and Defenses 2018](http://caad.geekpwn.org/)
 Following software required to use this package:
 
@@ -38,6 +38,11 @@ To download the dataset and all checkpoints run following:
 ```bash
 ./download_data.sh
 ```
+To download randomly 100 images and all checkpoints run following:
+
+```bash
+./download_data_100.sh
+```
 
 If you only need to download the dataset then you can run:
 
@@ -45,6 +50,7 @@ If you only need to download the dataset then you can run:
 # ${DATASET_IMAGES_DIR} is a directory to save images
 python ../dataset/download_images.py \
   --input_file=../dataset/dev_dataset.csv \
+  --numbers_images=100 \
   --output_dir=${DATASET_IMAGES_DIR}
 ```
 
@@ -170,7 +176,7 @@ filename and predicted label.
 ## How to run attacks against defenses
 
 Script `run_attacks_and_defenses.py` runs all attacks against all defenses
-and computes scores of each attack and each defense.
+and computes scores of each attack and each defense
 
 You can run it in a following way:
 
