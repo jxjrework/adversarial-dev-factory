@@ -5,7 +5,7 @@ from __future__ import division
 from __future__ import print_function
 
 import csv
-import os
+import os, time
 
 import numpy as np
 from scipy.misc import imread
@@ -210,6 +210,8 @@ def main(_):
   # Images for inception classifier are normalized to be in [-1, 1] interval,
   # eps is a difference between pixels so it should be in [0, 2] interval.
   # Renormalizing epsilon from [0, 255] to [0, 2].
+  start_time = time.time()
+
   eps = 2.0 * FLAGS.max_epsilon / 255.0
 
   batch_shape = [FLAGS.batch_size, FLAGS.image_height, FLAGS.image_width, 3]
@@ -258,6 +260,9 @@ def main(_):
             + [0] * (FLAGS.batch_size - len(filenames)))
         adv_images = sess.run(x_adv, feed_dict={x_input: images, target_class_input: target_class_for_batch})
         save_images(adv_images, filenames, FLAGS.output_dir)
+
+  elapsed_time = time.time() - start_time
+  print('elapsed time: {0:.0f} [s]'.format(elapsed_time))
 
 if __name__ == '__main__':
   tf.app.run()

@@ -8,7 +8,7 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import os
+import os, time
 import argparse
 import math
 import numpy as np
@@ -55,6 +55,8 @@ class LeNormalize(object):
     
 
 def main():
+    start_time = time.time()
+
     args = parser.parse_args()
 
     if not os.path.exists(args.input_dir):
@@ -152,6 +154,9 @@ def main():
         for filename, label in zip(filenames, outputs):
             filename = os.path.basename(filename)
             out_file.write('{0},{1}\n'.format(filename, label))
+
+    elapsed_time = time.time() - start_time
+    print('elapsed time: {0:.0f} [s]'.format(elapsed_time))
 
 if __name__ == '__main__':
     main()
