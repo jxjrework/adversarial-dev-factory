@@ -65,27 +65,27 @@ def main():
         exit(-1)
         
     tf = transforms.Compose([
-           transforms.Scale([299,299]),
+           transforms.Resize([299,299]),
             transforms.ToTensor()
     ])
 
-    mean_torch = autograd.Variable(torch.from_numpy(np.array([0.485, 0.456, 0.406]).reshape([1,3,1,1]).astype('float32')).cuda(), volatile=True)
-    std_torch = autograd.Variable(torch.from_numpy(np.array([0.229, 0.224, 0.225]).reshape([1,3,1,1]).astype('float32')).cuda(), volatile=True)
-    mean_tf = autograd.Variable(torch.from_numpy(np.array([0.5, 0.5, 0.5]).reshape([1,3,1,1]).astype('float32')).cuda(), volatile=True)
-    std_tf = autograd.Variable(torch.from_numpy(np.array([0.5, 0.5, 0.5]).reshape([1,3,1,1]).astype('float32')).cuda(), volatile=True)
-    
+    with torch.no_grad():
+        mean_torch = autograd.Variable(torch.from_numpy(np.array([0.485, 0.456, 0.406]).reshape([1,3,1,1]).astype('float32')).cuda())
+        std_torch = autograd.Variable(torch.from_numpy(np.array([0.229, 0.224, 0.225]).reshape([1,3,1,1]).astype('float32')).cuda())
+        mean_tf = autograd.Variable(torch.from_numpy(np.array([0.5, 0.5, 0.5]).reshape([1,3,1,1]).astype('float32')).cuda())
+        std_tf = autograd.Variable(torch.from_numpy(np.array([0.5, 0.5, 0.5]).reshape([1,3,1,1]).astype('float32')).cuda())
 
-    dataset = Dataset(args.input_dir, transform=tf)
-    loader = data.DataLoader(dataset, batch_size=args.batch_size, shuffle=False)
+        dataset = Dataset(args.input_dir, transform=tf)
+        loader = data.DataLoader(dataset, batch_size=args.batch_size, shuffle=False)
     
-    config, resmodel = get_model1()
-    config, inresmodel = get_model2()
-    config, incepv3model = get_model3()
-    config, rexmodel = get_model4()
-    net1 = resmodel.net    
-    net2 = inresmodel.net
-    net3 = incepv3model.net
-    net4 = rexmodel.net
+        config, resmodel = get_model1()
+        config, inresmodel = get_model2()
+        config, incepv3model = get_model3()
+        config, rexmodel = get_model4()
+        net1 = resmodel.net    
+        net2 = inresmodel.net
+        net3 = incepv3model.net
+        net4 = rexmodel.net
 
     checkpoint = torch.load('denoise_res_015.ckpt')
     if isinstance(checkpoint, dict) and 'state_dict' in checkpoint:
@@ -125,24 +125,25 @@ def main():
     for batch_idx, (input, _) in enumerate(loader):
         if not args.no_gpu:
             input = input.cuda()
-        input_var = autograd.Variable(input, volatile=True)
-        input_tf = (input_var-mean_tf)/std_tf
-        input_torch = (input_var - mean_torch)/std_torch
+        with torch.no_grad():
+            input_var = autograd.Variable(input)
+            input_tf = (input_var-mean_tf)/std_tf
+            input_torch = (input_var - mean_torch)/std_torch
 
-        #clean1 = net1.denoise[0](input_torch)        
-        #clean2 = net2.denoise[0](input_tf)
-        #clean3 = net3.denoise(input_tf)
+            #clean1 = net1.denoise[0](input_torch)        
+            #clean2 = net2.denoise[0](input_tf)
+            #clean3 = net3.denoise(input_tf)
 
-        #labels1 = net1(clean1,False)[-1]
-        #labels2 = net2(clean2,False)[-1]
-        #labels3 = net3(clean3,False)[-1]
+            #labels1 = net1(clean1,False)[-1]
+            #labels2 = net2(clean2,False)[-1]
+            #labels3 = net3(clean3,False)[-1]
         
-        labels1 = net1(input_torch,True)[-1]
-        labels2 = net2(input_tf,True)[-1]
-        labels3 = net3(input_tf,True)[-1]
-        labels4 = net4(input_torch,True)[-1]
+            labels1 = net1(input_torch,True)[-1]
+            labels2 = net2(input_tf,True)[-1]
+            labels3 = net3(input_tf,True)[-1]
+            labels4 = net4(input_torch,True)[-1]
 
-        labels = (labels1+labels2+labels3+labels4).max(1)[1] + 1  # argmax + offset to match Google's Tensorflow + Inception 1001 class ids
+            labels = (labels1+labels2+labels3+labels4).max(1)[1] + 1  # argmax + offset to match Google's Tensorflow + Inception 1001 class ids
         outputs.append(labels.data.cpu().numpy())
     outputs = np.concatenate(outputs, axis=0)
 
