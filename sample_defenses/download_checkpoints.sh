@@ -29,7 +29,7 @@ rm ens_adv_inception_resnet_v2_2017_08_18.tar.gz
 # Original file is from https://www.dropbox.com/sh/q9ssnbhpx8l515t/AACvjiMmGRCteaApmj1zTrLTa?dl=0
 # or https://pan.baidu.com/s/1hs7ti5Y#list/path=%2F
 # I convert it to tar.gz
-cd "${SCRIPT_DIR}/Guided_denoise/"
+cd "${SCRIPT_DIR}/Guided_Denoise/"
 python ../../google_drive_downloader.py 1p1zhtUeBA8MJa0p3X2WHxSoanIsEjH38 checkpoints.tar.gz
 tar -xvzf checkpoints.tar.gz
 rm checkpoints.tar.gz
