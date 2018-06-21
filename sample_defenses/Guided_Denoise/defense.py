@@ -37,8 +37,8 @@ parser.add_argument('--checkpoint_path2', default=None,
                     help='Path to network checkpoint.')
 parser.add_argument('--img-size', type=int, default=299, metavar='N',
                     help='Image patch size (default: 299)')
-parser.add_argument('--batch-size', type=int, default=32, metavar='N',
-                    help='Batch size (default: 32)')
+parser.add_argument('--batch-size', type=int, default=16, metavar='N',
+                    help='Batch size (default: 16)')
 parser.add_argument('--no-gpu', action='store_true', default=False,
                     help='disables GPU training')
 
