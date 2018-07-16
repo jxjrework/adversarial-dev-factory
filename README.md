@@ -44,14 +44,16 @@ To download randomly 100 images and all checkpoints run following:
 ./download_data_100.sh
 ```
 
-If you only need to download the dataset then you can run:
+If you only want to download checkpoints run following:
 
 ```bash
-# ${DATASET_IMAGES_DIR} is a directory to save images
-python ../dataset/download_images.py \
-  --input_file=../dataset/dev_dataset.csv \
-  --numbers_images=100 \
-  --output_dir=${DATASET_IMAGES_DIR}
+./download_ckpts.sh
+```
+
+If you only want to to download the dataset then you can run:
+
+```bash
+./download_images.sh <output_folder> <number of images>
 ```
 
 ## Dataset
@@ -69,11 +71,21 @@ Toolkit includes examples of attacks and defenses in the following directories:
 * `sample_attacks/` - directory with examples of attacks:
   * `sample_attacks/fgsm/` - Fast gradient sign attack.
   * `sample_attacks/noop/` - No-op attack, which just copied images unchanged.
-  * `sample_attacks/random_noise/` - Attack which adds random noise to images.
+  * `sample_attacks/MultiModelIterativeMethod/` - Submission for NIPS 2017: (5th place), which is based on BasicIterativeMethod included in CleverHans with following three modifications.
+     [[code](https://github.com/toshi-k/kaggle-nips-2017-adversarial-attack)]
+     * Three models are attacked; inception_v3.ckpt, adv_inception_v3.ckpt, ens_adv_inception_resnet_v2.ckpt.
+     * Number of iteration is set 10 to finish attacking in time.
+     * Gradient is smoothed spatially. This procedure make smoothed perturbation and encourage transferability.
 * `sample_targeted_attacks/` - directory with examples of targeted attacks:
-  * `sample_targeted_attacks/step_target_class/` - one step towards target
-    class attack. This is not particularly good targeted attack, but it
-    demonstrates how targeted attack could be written.
+  * `sample_targeted_attacks/momentum/` - Submission for NIPS competition 2017 (1st place). 
+     A novel momentum iterative method has been applied to avoid the local minimium.[[code](https://github.com/dongyp13/Targeted-Adversarial-Attack)][[paper](https://arxiv.org/pdf/1710.06081.pdf)]
+  * `sample_targeted_attacks/target_class_toshi_k/` - Submission for NIPS 2017: (9th place), which is based on iter_target_class with following four modifications.
+     [[code](https://github.com/toshi-k/kaggle-nips-2017-adversarial-attack)]
+     * Three models are attacked; inception_v3.ckpt, adv_inception_v3.ckpt, ens_adv_inception_resnet_v2.ckpt.
+     * Number of iteration is set 14 to finish attacking in time.
+     * Gradient is smoothed spatially. This procedure make smoothed perturbation and encourage transferability.
+     * Save method with Image (PIL) is used to save images, instead of imsave (scipy.misc).
+
   * `sample_targeted_attacks/iter_target_class/` - iterative target class
     attack. This is a pretty good white-box attack,
     but it does not do well in black box setting.
@@ -81,13 +93,13 @@ Toolkit includes examples of attacks and defenses in the following directories:
   * `sample_defenses/base_inception_model/` - baseline inception classifier,
     which actually does not provide any defense against adversarial examples.
   * `sample_defenses/adv_inception_v3/` - adversarially trained Inception v3
-    model from [Adversarial Machine Learning at
-    Scale](https://arxiv.org/abs/1611.01236) paper.
+    model from Adversarial Machine Learning at Scale. [[paper](https://arxiv.org/abs/1611.01236)]
   * `sample_defenses/ens_adv_inception_resnet_v2/` - Inception ResNet v2
     model which is adversarially trained against an ensemble of different
     kind of adversarial examples. Model is described in
-    [Ensemble Adversarial Training: Attacks and
-    Defenses](https://arxiv.org/abs/1705.07204) paper.
+    Ensemble Adversarial Training: Attacks and Defenses. [[paper](https://arxiv.org/abs/1705.07204)]
+  * `sample_defenses/Guided_Denoise/` - Submission for NIPS competition 2017 (1st place).
+    A denoise network has been trained.[[code](https://github.com/lfz/Guided-Denoise)][[paper](https://arxiv.org/abs/1712.02976)]
 
 ### Structure of attacks and defenses
 
@@ -175,10 +187,10 @@ filename and predicted label.
 
 ## How to run attacks against defenses
 
-Script `run_attacks_and_defenses.py` runs all attacks against all defenses
-and computes scores of each attack and each defense
+Script `run_attacks_and_defenses.py` runs all attacks against all defenses **in Docker**
+and computes scores of each attack and each defense. You can run `run_attacks_and_defenses_local.py` to run them locally.
 
-You can run it in a following way:
+You can also run it in a following way:
 
 ```bash
 python run_attacks_and_defenses.py \
