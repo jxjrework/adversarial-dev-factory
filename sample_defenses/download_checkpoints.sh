@@ -38,4 +38,10 @@ rm ens_adv_inception_resnet_v2_2017_08_18.tar.gz
 cd "${SCRIPT_DIR}/Guided_Denoise/"
 python ../../google_drive_downloader.py 1p1zhtUeBA8MJa0p3X2WHxSoanIsEjH38 checkpoints.tar.gz
 tar -xvzf checkpoints.tar.gz
+
+# Same checkpoint for Guided Denoise with 14 models only
+cd "${SCRIPT_DIR}/Guided_Denoise_14/"
+mv ../Guided_Denoise/checkpoints.tar.gz .
+tar -xvzf checkpoints.tar.gz
 rm checkpoints.tar.gz
+

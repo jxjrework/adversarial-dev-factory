@@ -100,6 +100,7 @@ Toolkit includes examples of attacks and defenses in the following directories:
     Ensemble Adversarial Training: Attacks and Defenses. [[paper](https://arxiv.org/abs/1705.07204)]
   * `sample_defenses/Guided_Denoise/` - Submission for NIPS competition 2017 (1st place).
     A denoise network has been trained.[[code](https://github.com/lfz/Guided-Denoise)][[paper](https://arxiv.org/abs/1712.02976)]
+  * `sample_defenses/Guided_Denoise_14/` - Submission for CAAD 2018. First place in the first round. Modified Guided_Denoise to keep model 1 and 4 only. Enhanced defense performance against Toshi targeted attack.
   * `sample_defenses/Random_padding_IresV2/` - Submission for NIPS competition 2017 (2nd place).
     The main ideal of the defense is to utilize randomization (random resizing and random padding) to defend adversarial examples.[[code](https://github.com/cihangxie/NIPS2017_adv_challenge_defense)][[paper](https://arxiv.org/pdf/1711.01991.pdf)]
 
