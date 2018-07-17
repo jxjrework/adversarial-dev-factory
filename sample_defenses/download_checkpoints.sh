@@ -23,6 +23,12 @@ rm adv_inception_v3_2017_08_18.tar.gz
 cd "${SCRIPT_DIR}/ens_adv_inception_resnet_v2/"
 wget http://download.tensorflow.org/models/ens_adv_inception_resnet_v2_2017_08_18.tar.gz
 tar -xvzf ens_adv_inception_resnet_v2_2017_08_18.tar.gz
+
+
+# Also copy to defense random_padding_iresV2
+cd "${SCRIPT_DIR}/Random_padding_IresV2/"
+mv ../ens_adv_inception_resnet_v2/ens_adv_inception_resnet_v2_2017_08_18.tar.gz .
+tar -xvzf ens_adv_inception_resnet_v2_2017_08_18.tar.gz
 rm ens_adv_inception_resnet_v2_2017_08_18.tar.gz
 
 # Download checkpoints for Guided_denoise defense
