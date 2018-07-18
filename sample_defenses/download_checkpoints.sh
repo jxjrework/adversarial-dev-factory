@@ -43,5 +43,10 @@ tar -xvzf checkpoints.tar.gz
 cd "${SCRIPT_DIR}/Guided_Denoise_14/"
 mv ../Guided_Denoise/checkpoints.tar.gz .
 tar -xvzf checkpoints.tar.gz
+
+# Same checkpoint for Random_Guided_Denoise
+cd "${SCRIPT_DIR}/Random_Guided_Denoise/"
+mv ../Guided_Denoise_14/checkpoints.tar.gz .
+tar -xvzf checkpoints.tar.gz
 rm checkpoints.tar.gz
 
