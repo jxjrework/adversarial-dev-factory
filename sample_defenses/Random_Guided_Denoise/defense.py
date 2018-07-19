@@ -42,6 +42,8 @@ parser.add_argument('--batch-size', type=int, default=16, metavar='N',
                     help='Batch size (default: 16)')
 parser.add_argument('--no-gpu', action='store_true', default=False,
                     help='disables GPU training')
+parser.add_argument('--iteration', type=int, default=30, 
+                    help='Number of iteration (default: 30)')
 
 def batch_transform(inputs, transform, size):
     input_shape = list(inputs.size())
@@ -68,7 +70,7 @@ def padding_layer_iyswim(inputs, shape, transform):
     # print(output_height, output_width, output_long)
     padding = torch.nn.ConstantPad3d((w_start, output_width - w_start - input_shape[3], h_start, output_height - h_start - input_shape[2], 0,0), 0)
     outputs = padding(inputs)
-    print(type(outputs))
+    # print(type(outputs))
     return batch_transform(outputs, transform, 299)
 
 
@@ -159,47 +161,49 @@ def main():
     rexmodel.eval()
 
     outputs = []
+    iter = args.iteration
+    # print(iter)
     for batch_idx, (input, _) in enumerate(loader):
+        # print(input.size())
+        iter_labels = np.zeros([args.batch_size, 1001, iter])
+        for j in range(iter):
+            # random resizing
+            resize_shape_ = random.randint(310, 331)
+            image_resize = 331
+            tf_rand_resize = transforms.Compose([
+                transforms.ToPILImage(),
+                transforms.Resize([resize_shape_, resize_shape_]),
+                transforms.ToTensor()
+            ]) 
+            input1 = batch_transform(input, tf_rand_resize, resize_shape_)
 
-        # random resizing
-        resize_shape_ = random.randint(310, 331)
-        image_resize = 331
-        tf_rand_resize = transforms.Compose([
-           transforms.ToPILImage(),
-           transforms.Resize([resize_shape_, resize_shape_]),
-           transforms.ToTensor()
-        ]) 
-        input1 = batch_transform(input, tf_rand_resize, resize_shape_)
-
-        # ramdom padding
-        shape = [random.randint(0, image_resize - resize_shape_), random.randint(0, image_resize - resize_shape_), image_resize]
-        print(shape)
+            # ramdom padding
+            shape = [random.randint(0, image_resize - resize_shape_), random.randint(0, image_resize - resize_shape_), image_resize]
+            # print(shape)
         
-        new_input = padding_layer_iyswim(input1, shape, tf_shrink)
-        #print(type(new_input))
+            new_input = padding_layer_iyswim(input1, shape, tf_shrink)
+            #print(type(new_input))
 
-        if not args.no_gpu:
-            new_input = new_input.cuda()
-        with torch.no_grad():
-            input_var = autograd.Variable(new_input)
-            input_tf = (input_var-mean_tf)/std_tf
-            input_torch = (input_var - mean_torch)/std_torch
+            if not args.no_gpu:
+                new_input = new_input.cuda()
+            with torch.no_grad():
+                input_var = autograd.Variable(new_input)
+                input_tf = (input_var-mean_tf)/std_tf
+                input_torch = (input_var - mean_torch)/std_torch
 
-            #clean1 = net1.denoise[0](input_torch)        
-            #clean2 = net2.denoise[0](input_tf)
-            #clean3 = net3.denoise(input_tf)
+                labels1 = net1(input_torch,True)[-1]
+                labels2 = net2(input_tf,True)[-1]
+                labels3 = net3(input_tf,True)[-1]
+                labels4 = net4(input_torch,True)[-1]
 
-            #labels1 = net1(clean1,False)[-1]
-            #labels2 = net2(clean2,False)[-1]
-            #labels3 = net3(clean3,False)[-1]
-        
-            labels1 = net1(input_torch,True)[-1]
-            labels2 = net2(input_tf,True)[-1]
-            labels3 = net3(input_tf,True)[-1]
-            labels4 = net4(input_torch,True)[-1]
-
-            labels = (labels1+labels2+labels3+labels4).max(1)[1] + 1  # argmax + offset to match Google's Tensorflow + Inception 1001 class ids
-        outputs.append(labels.data.cpu().numpy())
+                labels = (labels1+labels2+labels3+labels4).max(1)[1] + 1  # argmax + offset to match Google's Tensorflow + Inception 1001 class ids
+                labels_index = labels.data.tolist()
+                # print(len(labels_index))
+                iter_labels[range(len(iter_labels)), labels_index, j] = 1
+        final_labels = np.sum(iter_labels, axis=-1)
+        labels = np.argmax(final_labels, 1)
+        print(labels)
+        outputs.append(labels)
     outputs = np.concatenate(outputs, axis=0)
 
     with open(args.output_file, 'w') as out_file:
