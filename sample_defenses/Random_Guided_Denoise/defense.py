@@ -197,8 +197,13 @@ def main():
                 labels4 = net4(input_torch,True)[-1]
 
                 labels = (labels1+labels2+labels3+labels4).max(1)[1] + 1  # argmax + offset to match Google's Tensorflow + Inception 1001 class ids
-                labels_index = labels.data.tolist()
-                # print(len(labels_index))
+
+                labels_index = labels.data.tolist() 
+                if (len(labels_index) % args.batch_size != 0):
+                    zeros = [0]* (args.batch_size - len(labels_index) % args.batch_size)
+                    labels_index = labels_index + zeros
+                print(len(labels_index))
+                #iter_labels[range(len(iter_labels)),m, j] = 1 for m in labels_index
                 iter_labels[range(len(iter_labels)), labels_index, j] = 1
         final_labels = np.sum(iter_labels, axis=-1)
         labels = np.argmax(final_labels, 1)
