@@ -38,3 +38,31 @@ tar -xvzf adv_inception_v3_2017_08_18.tar.gz
 rm adv_inception_v3_2017_08_18.tar.gz
 tar -xvzf ens_adv_inception_resnet_v2_2017_08_18.tar.gz
 rm ens_adv_inception_resnet_v2_2017_08_18.tar.gz
+
+
+# Download and make ensembled checkpoints for jing_target attack.
+cd "${SCRIPT_DIR}/jing_targeted/"
+# Download inception v3 checkpoint, Top-1 Accuracy: 78.0
+wget http://download.tensorflow.org/models/inception_v3_2016_08_28.tar.gz -q
+tar -xvzf inception_v3_2016_08_28.tar.gz
+rm inception_v3_2016_08_28.tar.gz
+# Download adversarially trained inception v3 checkpoint
+wget http://download.tensorflow.org/models/adv_inception_v3_2017_08_18.tar.gz -q
+tar -xvzf adv_inception_v3_2017_08_18.tar.gz
+rm adv_inception_v3_2017_08_18.tar.gz
+# Download ensemble adversarially trained inception resnet v2 checkpoint
+wget http://download.tensorflow.org/models/ens_adv_inception_resnet_v2_2017_08_18.tar.gz -q
+tar -xvzf ens_adv_inception_resnet_v2_2017_08_18.tar.gz
+rm ens_adv_inception_resnet_v2_2017_08_18.tar.gz
+
+echo "Creating ensemble model checkpoints"
+# create ensemble model
+python ensemble_models_v0.py
+echo "ensemble model checkpoints established"
+rm adv_inception_v3.ckpt.data-00000-of-00001
+rm adv_inception_v3.ckpt.index
+rm adv_inception_v3.ckpt.meta
+rm ens_adv_inception_resnet_v2.ckpt.data-00000-of-00001
+rm ens_adv_inception_resnet_v2.ckpt.index
+rm ens_adv_inception_resnet_v2.ckpt.meta
+rm inception_v3.ckpt
