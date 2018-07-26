@@ -2,7 +2,6 @@
 from auxkmean import auxkmean
 import time
 
-
 # Example 1
 # initialize an object, only two parameters - size=100 and ncluster=4
 aa = auxkmean(100, 5)
@@ -12,8 +11,7 @@ aa = auxkmean(100, 5)
 aa.train_classifier("./trainimgs/")
 # predict all files in the path with trained object
 # a .csv report will be generated in the same path
-aa.predict("./test/")
-
+aa.predict("./test/", 2)
 
 # Example 2
 time.sleep(2)
@@ -23,4 +21,4 @@ bb = auxkmean(100, 4)
 # default model is "auxkmean_model.pickle"
 bb.importmodel()
 # use imported model to do prediction on all images in folder test2
-bb.predict("./test2/")
+bb.predict("./test2/", 3)

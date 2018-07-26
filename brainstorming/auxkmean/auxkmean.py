@@ -96,13 +96,40 @@ class auxkmean(object):
         print("Model successfully imported from file!")
 
 
-    def predict(self, testpath):
+    def predict(self, testpath, ncol=1):
         if (self.predictmodel==None):
             print("Model not ready, please train or load a model!")
             return
         self.predict_outputnames, X = self.prepare_dataset(testpath)
         self.predict_outputclass = list(self.predictmodel.predict(X))
         self.composecsv(testpath, "PredictResult.csv", self.predict_outputnames, self.predict_outputclass)
+
+        # sorted class ranking for each test sample
+        if ncol > 1:
+            class_ranking = np.argsort(self.predictmodel.transform(X), axis=1)
+            if ncol > self.ncluster:
+                print("Classranking ncol must be fewer than clusters")
+                return
+            class_ranking = class_ranking[:, 0:ncol]
+            self.composecsv_classranking(testpath, "PredictClassRanking.csv",
+                self.predict_outputnames, class_ranking)
+
+
+    def composecsv_classranking(self, path, reportname, names, class_ranking):
+        # args:
+        # class_ranking - np matrix ranking the distances from each cluster center, small to large
+        # each row in class_ranking matrix is one test sample
+        if len(names) == class_ranking.shape[0]:
+            colnames = []
+            for i in range(class_ranking.shape[1]):
+                colnames.append('Category_'+str(i))
+
+            df = pd.DataFrame(data = class_ranking,
+                              columns = colnames)
+            df.insert(0, 'ImageName', names)
+            df.to_csv(os.path.join(path, reportname))
+        else:
+            print("Class ranking matrix dimension mismatch found!")
 
 
     def composecsv(self, path, reportname, names, labels):
@@ -117,5 +144,3 @@ class auxkmean(object):
         sd = pd.Series(labels)
         df['kmeanClass'] = sd.values
         df.to_csv(os.path.join(path, reportname))
-
-# end of code
