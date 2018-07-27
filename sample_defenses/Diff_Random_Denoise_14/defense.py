@@ -48,10 +48,10 @@ def main():
         
     no_gpu = args.no_gpu
     labels_denoise = defense_denoise_14(args.input_dir, args.batch_size, no_gpu)
-    print(labels_denoise)
+    # print(labels_denoise)
 
     labels_random = defense_random(args.input_dir, args.checkpoint_path, args.itr_time, args.batch_size)
-    print(labels_random)
+    # print(labels_random)
 
     print('diff filtering...')
     if (len(labels_denoise) == len(labels_random)):
@@ -60,7 +60,7 @@ def main():
         # Compare
         diff_index = [ii for ii in labels_denoise if labels_random[ii] != labels_denoise[ii]]
         if (len(diff_index) != 0):
-            print(diff_index)
+            # print(diff_index)
             for index in diff_index:
                 final_labels[index] = 0
     else:

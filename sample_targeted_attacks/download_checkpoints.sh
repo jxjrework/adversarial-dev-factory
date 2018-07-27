@@ -75,3 +75,9 @@ rm ens_adv_inception_resnet_v2.ckpt.data-00000-of-00001
 rm ens_adv_inception_resnet_v2.ckpt.index
 rm ens_adv_inception_resnet_v2.ckpt.meta
 rm inception_v3.ckpt
+
+# Download checkpoints for target_attack_guided_denoise
+cd "${SCRIPT_DIR}/target_attack_guided_denoise/"
+mv ../../sample_defenses/Random_Guided_Denoise/checkpoints.tar.gz .
+tar -xvzf checkpoints.tar.gz
+rm checkpoints.tar.gz

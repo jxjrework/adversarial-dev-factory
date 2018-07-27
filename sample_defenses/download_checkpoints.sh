@@ -78,5 +78,4 @@ mv ../Random_Guided_Denoise/checkpoints.tar.gz .
 tar -xvzf checkpoints.tar.gz
 mv ../ens_adv_inception_resnet_v2/ens_adv_inception_resnet_v2_2017_08_18.tar.gz .
 tar -xvzf ens_adv_inception_resnet_v2_2017_08_18.tar.gz
-rm checkpoints.tar.gz
 rm ens_adv_inception_resnet_v2_2017_08_18.tar.gz
