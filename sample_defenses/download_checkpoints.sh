@@ -9,6 +9,11 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd "${SCRIPT_DIR}/base_inception_model/"
 wget http://download.tensorflow.org/models/inception_v3_2016_08_28.tar.gz
 tar -xvzf inception_v3_2016_08_28.tar.gz
+
+# Also copy to defense tv
+cd "${SCRIPT_DIR}/tv/"
+mv ../base_inception_model/inception_v3_2016_08_28.tar.gz .
+tar -xvzf inception_v3_2016_08_28.tar.gz
 rm inception_v3_2016_08_28.tar.gz
 
 # Download adversarially trained inception v3 checkpoint
