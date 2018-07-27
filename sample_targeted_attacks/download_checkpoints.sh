@@ -31,7 +31,7 @@ tar -xvzf ens_adv_inception_resnet_v2_2017_08_18.tar.gz
 
 # Download checkpoints for target_attack_EOT_toshi_on_randomPadding
 cd "${SCRIPT_DIR}/target_attack_EOT_toshi_on_randomPadding/"
-mv ../target_class_toshi_k/*.tar.gz .
+cp ../target_class_toshi_k/*.tar.gz .
 tar -xvzf inception_v3_2016_08_28.tar.gz
 rm inception_v3_2016_08_28.tar.gz
 tar -xvzf adv_inception_v3_2017_08_18.tar.gz
@@ -48,7 +48,6 @@ tar -xvzf adv_inception_v3_2017_08_18.tar.gz
 rm adv_inception_v3_2017_08_18.tar.gz
 tar -xvzf ens_adv_inception_resnet_v2_2017_08_18.tar.gz
 rm ens_adv_inception_resnet_v2_2017_08_18.tar.gz
-
 
 # Download and make ensembled checkpoints for jing_target attack.
 cd "${SCRIPT_DIR}/jing_targeted/"
