@@ -104,7 +104,8 @@ Toolkit includes examples of attacks and defenses in the following directories:
   * `sample_defenses/Guided_Denoise_14/` - Submission for CAAD 2018. First place in the first round. Modified Guided_Denoise to keep model 1 and 4 only. Enhanced defense performance against Toshi targeted attack.
   * `sample_defenses/Random_padding_IresV2/` - Submission for NIPS competition 2017 (2nd place).
     The main ideal of the defense is to utilize randomization (random resizing and random padding) to defend adversarial examples.[[code](https://github.com/cihangxie/NIPS2017_adv_challenge_defense)][[paper](https://arxiv.org/pdf/1711.01991.pdf)]
-  * `sample_defenses/Random_Guided_Denoise/` - Our implementaion of combination of randomization (random resizing and random padding) and Denoise. Iteration = 5 (10 seconds processing 16 pictures)
+  * `sample_defenses/Random_Guided_Denoise/` - Our implementaion of stacking randomization (random resizing and random padding) and Denoise. Iteration = 5 (10 seconds processing 16 pictures)
+  * `sample_defenses/Diff_Random_Denoise_14/` - Our implementaion of difference filter of output labels of randomization (random resizing and random padding) and Denoise_14. Output label will be 0 if two labels don't match. 
 
 ### Structure of attacks and defenses
 

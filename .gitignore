@@ -1,4 +1,5 @@
 dataset/images/
+dataset/images2/
 *ckpt*
 tmp.*/
 *.pyc
