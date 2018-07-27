@@ -32,7 +32,7 @@ tar -xvzf ens_adv_inception_resnet_v2_2017_08_18.tar.gz
 
 # Also copy to defense random_padding_iresV2
 cd "${SCRIPT_DIR}/Random_padding_IresV2/"
-mv ../ens_adv_inception_resnet_v2/ens_adv_inception_resnet_v2_2017_08_18.tar.gz .
+cp ../ens_adv_inception_resnet_v2/ens_adv_inception_resnet_v2_2017_08_18.tar.gz .
 tar -xvzf ens_adv_inception_resnet_v2_2017_08_18.tar.gz
 rm ens_adv_inception_resnet_v2_2017_08_18.tar.gz
 
@@ -57,13 +57,13 @@ rm checkpoints.tar.gz
 
 # copy ckpts for jpeg
 cd "${SCRIPT_DIR}/defense_jpeg/"
-mv ../ens_adv_inception_resnet_v2/ens_adv_inception_resnet_v2_2017_08_18.tar.gz .
+cp ../ens_adv_inception_resnet_v2/ens_adv_inception_resnet_v2_2017_08_18.tar.gz .
 tar -xvzf ens_adv_inception_resnet_v2_2017_08_18.tar.gz
 rm ens_adv_inception_resnet_v2_2017_08_18.tar.gz
 
 # copy ckpts for crop
 cd "${SCRIPT_DIR}/defense_crop/"
-mv ../ens_adv_inception_resnet_v2/ens_adv_inception_resnet_v2_2017_08_18.tar.gz .
+cp ../ens_adv_inception_resnet_v2/ens_adv_inception_resnet_v2_2017_08_18.tar.gz .
 tar -xvzf ens_adv_inception_resnet_v2_2017_08_18.tar.gz
 rm ens_adv_inception_resnet_v2_2017_08_18.tar.gz
 
