@@ -165,7 +165,8 @@ def main():
     # print(iter)
     for batch_idx, (input, _) in enumerate(loader):
         # print(input.size())
-        iter_labels = np.zeros([args.batch_size, 1001, iter])
+        length_input, _, _, _ = input.size()
+        iter_labels = np.zeros([length_input, 1001, iter])
         for j in range(iter):
             # random resizing
             resize_shape_ = random.randint(310, 331)
@@ -199,9 +200,9 @@ def main():
                 labels = (labels1+labels2+labels3+labels4).max(1)[1] + 1  # argmax + offset to match Google's Tensorflow + Inception 1001 class ids
 
                 labels_index = labels.data.tolist() 
-                if (len(labels_index) % args.batch_size != 0):
-                    zeros = [0]* (args.batch_size - len(labels_index) % args.batch_size)
-                    labels_index = labels_index + zeros
+                #if (len(labels_index) % args.batch_size != 0):
+                #    zeros = [0]* (args.batch_size - len(labels_index) % args.batch_size)
+                #    labels_index = labels_index + zeros
                 print(len(labels_index))
                 #iter_labels[range(len(iter_labels)),m, j] = 1 for m in labels_index
                 iter_labels[range(len(iter_labels)), labels_index, j] = 1
