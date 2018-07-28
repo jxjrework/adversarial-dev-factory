@@ -3,6 +3,8 @@ https://arxiv.org/abs/1712.02976
 
 # Description
 
+This code would be out of memeroy if run random padding defense first. Don't know why
+
 This is the defense solution of team TSAIL in the NIPS 2017: Defense Against Adversarial Attack competition, which is the winner of the competition.
 
 Our basic idea is to put a denoiser before the a baseline neural network. The denoiser is trained to reduce the pertubation of adversarial examples. And a denoiser is specifically trained for a baseline neural network.

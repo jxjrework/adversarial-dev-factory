@@ -77,7 +77,7 @@ Toolkit includes examples of attacks and defenses in the following directories:
      * Number of iteration is set 10 to finish attacking in time.
      * Gradient is smoothed spatially. This procedure make smoothed perturbation and encourage transferability.
 * `sample_targeted_attacks/` - directory with examples of targeted attacks:
-  * `sample_targeted_attacks/target_attack_EOT_toshi_on_randomPadding/` - Our implementation of EOT on Toshi attack. (Iteration=180 takes 1 min to generate 1 picture ) EOT: [[code](https://github.com/anishathalye/obfuscated-gradients)][[paper](https://arxiv.org/pdf/1802.00420.pdf)]
+  * `sample_targeted_attacks/target_attack_EOT_toshi_on_randomPadding/` - Our implementation of EOT on Toshi attack. (Iteration=90 takes 70 sec to generate 1 picture ) EOT: [[code](https://github.com/anishathalye/obfuscated-gradients)][[paper](https://arxiv.org/pdf/1802.00420.pdf)]
   * `sample_targeted_attacks/momentum/` - Submission for NIPS competition 2017 (1st place). 
      A novel momentum iterative method has been applied to avoid the local minimium.[[code](https://github.com/dongyp13/Targeted-Adversarial-Attack)][[paper](https://arxiv.org/pdf/1710.06081.pdf)]
   * `sample_targeted_attacks/target_class_toshi_k/` - Submission for NIPS 2017: (9th place), which is based on iter_target_class with following four modifications.

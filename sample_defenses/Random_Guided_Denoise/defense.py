@@ -100,6 +100,12 @@ def main():
     tf = transforms.Compose([
            transforms.Resize([299,299]),
            transforms.ToTensor()
+    ]) 
+
+    tf_flip = transforms.Compose([
+        transforms.ToPILImage(),
+        transforms.RandomHorizontalFlip(p=0.5),
+        transforms.ToTensor()
     ])  
 
     tf_shrink = transforms.Compose([
@@ -168,6 +174,8 @@ def main():
         length_input, _, _, _ = input.size()
         iter_labels = np.zeros([length_input, 1001, iter])
         for j in range(iter):
+            # random fliping
+            input0 = batch_transform(input, tf_flip, 299)
             # random resizing
             resize_shape_ = random.randint(310, 331)
             image_resize = 331
@@ -176,7 +184,7 @@ def main():
                 transforms.Resize([resize_shape_, resize_shape_]),
                 transforms.ToTensor()
             ]) 
-            input1 = batch_transform(input, tf_rand_resize, resize_shape_)
+            input1 = batch_transform(input0, tf_rand_resize, resize_shape_)
 
             # ramdom padding
             shape = [random.randint(0, image_resize - resize_shape_), random.randint(0, image_resize - resize_shape_), image_resize]
