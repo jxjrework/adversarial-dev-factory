@@ -317,8 +317,8 @@ def main(_):
                         [all_images_taget_class[n] for n in filenames] + [0] * (FLAGS.batch_size - len(filenames)))
 
                 adv = np.copy(images)
-                lower = np.clip(images - FLAGS.max_epsilon, -1, 1) # doubt here
-                upper = np.clip(images + FLAGS.max_epsilon, -1, 1) # doubt here
+                lower = np.clip(images - eps, -1, 1) # doubt here
+                upper = np.clip(images + eps, -1, 1) # doubt here
                 for i in range(num_iter):
                     resize_shape_ = np.random.randint(310, 331)
 
