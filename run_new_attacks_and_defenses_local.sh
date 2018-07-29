@@ -10,7 +10,7 @@ MAX_EPSILON=32
 ROOT_DIR=$1
 
 echo "Running attacks and defenses"
-python "${SCRIPT_DIR}/run_existing_attacks_and_defenses_local.py" \
+python "${SCRIPT_DIR}/run_new_attacks_and_defenses_local.py" \
   --root_dir="${ROOT_DIR}" \
   --epsilon="${MAX_EPSILON}" \
   --save_all_classification
