@@ -196,6 +196,11 @@ filename and predicted label.
 Script `run_attacks_and_defenses.py` runs all attacks against all defenses **in Docker**
 and computes scores of each attack and each defense. You can run `run_attacks_and_defenses_local.py` to run them locally.
 
+Following shell will search the exsiting folder to find new attacks and defenses, then run all new models locally and calculate the final scores. The folder path has to be absolute path.
+```bash
+./run_new_attacks_and_defenses.sh [/absolute/path/to/existing/folder]
+```
+
 You can also run it in a following way:
 
 ```bash
