@@ -55,7 +55,7 @@ mv ../Guided_Denoise_14/checkpoints.tar.gz .
 tar -xvzf checkpoints.tar.gz
 
 # copy ckpts for jpeg
-cd "${SCRIPT_DIR}/defense_jpeg/"
+cd "${SCRIPT_DIR}/defense_JPEG/"
 cp ../ens_adv_inception_resnet_v2/ens_adv_inception_resnet_v2_2017_08_18.tar.gz .
 tar -xvzf ens_adv_inception_resnet_v2_2017_08_18.tar.gz
 rm ens_adv_inception_resnet_v2_2017_08_18.tar.gz
@@ -67,7 +67,7 @@ tar -xvzf ens_adv_inception_resnet_v2_2017_08_18.tar.gz
 rm ens_adv_inception_resnet_v2_2017_08_18.tar.gz
 
 # copy ckpts for bit depth
-cd "${SCRIPT_DIR}/defense_bit_depth_reduction/"
+cd "${SCRIPT_DIR}/defense_bitDepthReduction/"
 cp ../ens_adv_inception_resnet_v2/ens_adv_inception_resnet_v2_2017_08_18.tar.gz .
 tar -xvzf ens_adv_inception_resnet_v2_2017_08_18.tar.gz
 rm ens_adv_inception_resnet_v2_2017_08_18.tar.gz
