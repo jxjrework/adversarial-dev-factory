@@ -86,6 +86,10 @@ Toolkit includes examples of attacks and defenses in the following directories:
      * Number of iteration is set 14 to finish attacking in time.
      * Gradient is smoothed spatially. This procedure make smoothed perturbation and encourage transferability.
      * Save method with Image (PIL) is used to save images, instead of imsave (scipy.misc).
+  * `sample_targeted_attacks/target_class_toshi_k_Sangxia/` - Submission for NIPS 2017: (2nd place).
+     [[code](https://github.com/sangxia/nips-2017-adversarial)]
+     * Three models are attacked; inception_v3.ckpt, adv_inception_v3.ckpt, ens_adv_inception_resnet_v2.ckpt.
+     * Number of iteration is set to 20.
 
   * `sample_targeted_attacks/iter_target_class/` - iterative target class
     attack. This is a pretty good white-box attack,

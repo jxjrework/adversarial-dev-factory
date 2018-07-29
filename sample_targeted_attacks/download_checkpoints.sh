@@ -43,6 +43,13 @@ rm ens_adv_inception_resnet_v2_2017_08_18.tar.gz
 cd "${SCRIPT_DIR}/target_attack_jpeg_toshi/"
 mv ../target_class_toshi_k/*.tar.gz .
 tar -xvzf inception_v3_2016_08_28.tar.gz
+tar -xvzf adv_inception_v3_2017_08_18.tar.gz
+tar -xvzf ens_adv_inception_resnet_v2_2017_08_18.tar.gz
+
+# Download checkpoints for target_class_toshi_k_Sangxia
+cd "${SCRIPT_DIR}/target_class_toshi_k_Sangxia/"
+mv ../target_attack_jpeg_toshi/*.tar.gz .
+tar -xvzf inception_v3_2016_08_28.tar.gz
 rm inception_v3_2016_08_28.tar.gz
 tar -xvzf adv_inception_v3_2017_08_18.tar.gz
 rm adv_inception_v3_2017_08_18.tar.gz
@@ -81,3 +88,5 @@ cd "${SCRIPT_DIR}/target_attack_guided_denoise/"
 mv ../../sample_defenses/Random_Guided_Denoise/checkpoints.tar.gz .
 tar -xvzf checkpoints.tar.gz
 rm checkpoints.tar.gz
+
+
