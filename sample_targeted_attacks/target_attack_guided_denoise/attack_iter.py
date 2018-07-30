@@ -82,7 +82,7 @@ def save_images(images, filenames, output_dir):
       tf_image = convert_tf_dimensions(images[i, :, :, :], (batch_shape[2], batch_shape[3], batch_shape[1]))
       #imsave(f, (tf_image + 1.0) * 0.5, format='png')
       print('min = {0} ; max = {1}'.format(np.amin(tf_image), np.amax(tf_image)))
-      imsave(f, tf_image * 255, format='png')
+      imsave(f, tf_image * 255)
 
 class LeNormalize(object):
     """Normalize to -1..1 in Google Inception style

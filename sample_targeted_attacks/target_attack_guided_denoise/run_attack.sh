@@ -15,7 +15,7 @@ OUTPUT_DIR=$2
 MAX_EPSILON=$3
 
 # For how many iterations run this attack
-NUM_ITERATIONS=30
+NUM_ITERATIONS=10
 
 python attack_iter.py \
   --input_dir="${INPUT_DIR}" \
