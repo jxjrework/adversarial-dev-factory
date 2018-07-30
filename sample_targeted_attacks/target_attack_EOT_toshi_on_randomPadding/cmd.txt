@@ -1,7 +1,0 @@
-# first breakthough to fool random padding: without kernel smoothing, only used InceptionResnet_v2.ckpt 
-python attack_iter_target_class_working_stage_for_randomPadding.py --checkpoint_path1=.\checkpoints\inception_v3.ckpt --checkpoint_path2=.\checkpoints\adv_inception_v3.ckpt --checkpoint_path3=.\checkpoints\ens_adv_inception_resnet_v2.ckpt --input_dir=.\input --output_dir=.\output --num_iter=180 --max_epsilon=8
-
-# working stage to fool random paddingl using all inception.ckpt and Inceptionresnet_v2.ckpt; ensemble_size = 15 because we don't have enough memory
-python attack_iter_target_class_working_stage_for_randomPadding_EOT_allModel_EnsembleSize_15_iteration_180.py --checkpoint_path1=.\checkpoints\inception_v3.ckpt --checkpoint_path2=.\checkpoints\adv_inception_v3.ckpt --checkpoint_path3=.\checkpoints\ens_adv_inception_resnet_v2.ckpt --input_dir=.\input --output_dir=.\output --num_iter=180 --max_epsilon=16 --ensemble_size=15
-
-

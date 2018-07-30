@@ -41,9 +41,14 @@ rm ens_adv_inception_resnet_v2_2017_08_18.tar.gz
 
 # Download checkpoints for target_attack_EOT_toshi_on_jpeg
 cd "${SCRIPT_DIR}/target_attack_jpeg_toshi/"
-mv ../target_class_toshi_k/*.tar.gz .
+cp ../target_class_toshi_k/*.tar.gz .
 tar -xvzf inception_v3_2016_08_28.tar.gz
 tar -xvzf adv_inception_v3_2017_08_18.tar.gz
+tar -xvzf ens_adv_inception_resnet_v2_2017_08_18.tar.gz
+
+# Download checkpoints for target_attack_EOT_crop
+cd "${SCRIPT_DIR}/target_attack_EOT_on_crop/"
+cp ../target_class_toshi_k/*.tar.gz .
 tar -xvzf ens_adv_inception_resnet_v2_2017_08_18.tar.gz
 
 # Download checkpoints for target_class_toshi_k_Sangxia
