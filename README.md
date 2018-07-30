@@ -111,6 +111,8 @@ Toolkit includes examples of attacks and defenses in the following directories:
   * `sample_defenses/Random_padding_IresV2_pytorch/` - Our pytorch implementation of random padding. Here we use **inception_resnet_v2** instead of ensemble_adv_inception_resnet_v2. This may affect its performance.
   * `sample_defenses/Random_Guided_Denoise/` - Our implementaion of stacking randomization (random resizing and random padding) and Denoise. Iteration = 5 (10 seconds processing 16 pictures)
   * `sample_defenses/Diff_Random_Denoise_14/` - Our implementaion of difference filter of output labels of randomization (random resizing and random padding) and Denoise_14. Output label will be 0 if two labels don't match. 
+  * `sample_defenses/Diff_Random_Denoise_14_pytorch/` - Our pure pytorch implementaion of difference filter of output labels of randomization (random resizing and random padding) and Denoise_14. Output label will be 0 if two labels don't match. Here is ramdon padding is on a **inception_resnet_v2** instead of ensemble_adv_inception_resnet_v2
+
 
 ### Structure of attacks and defenses
 
