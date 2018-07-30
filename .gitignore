@@ -6,3 +6,7 @@ tmp.*/
 output/
 *.zip
 tmp/
+*.pth
+*.png
+*.jpeg
+
