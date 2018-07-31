@@ -15,6 +15,6 @@ OUTPUT_FILE=$2
 python defense.py \
   --input_dir="${INPUT_DIR}" \
   --output_file="${OUTPUT_FILE}" \
-  --iteration=5 \
+  --iteration=15 \
   --checkpoint_path=inceptionresnetv2_state.pth \
   --checkpoint_path2=020.ckpt

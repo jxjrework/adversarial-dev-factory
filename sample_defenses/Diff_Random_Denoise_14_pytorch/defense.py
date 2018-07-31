@@ -121,12 +121,12 @@ def main():
         loader = data.DataLoader(dataset, batch_size=args.batch_size, shuffle=False)
     
         config, resmodel = get_model1()
-        config, inresmodel = get_model2()
-        config, incepv3model = get_model3()
+        #config, inresmodel = get_model2()
+        #config, incepv3model = get_model3()
         config, rexmodel = get_model4()
         net1 = resmodel.net    
-        net2 = inresmodel.net
-        net3 = incepv3model.net
+        #net2 = inresmodel.net
+        #net3 = incepv3model.net
         net4 = rexmodel.net
 
     checkpoint = torch.load('denoise_res_015.ckpt')
@@ -135,17 +135,17 @@ def main():
     else:
         resmodel.load_state_dict(checkpoint)
 
-    checkpoint = torch.load('denoise_inres_014.ckpt')
-    if isinstance(checkpoint, dict) and 'state_dict' in checkpoint:
-        inresmodel.load_state_dict(checkpoint['state_dict'])
-    else:
-        inresmodel.load_state_dict(checkpoint)
+    #checkpoint = torch.load('denoise_inres_014.ckpt')
+    #if isinstance(checkpoint, dict) and 'state_dict' in checkpoint:
+        #inresmodel.load_state_dict(checkpoint['state_dict'])
+    #else:
+        #inresmodel.load_state_dict(checkpoint)
 
-    checkpoint = torch.load('denoise_incepv3_012.ckpt')
-    if isinstance(checkpoint, dict) and 'state_dict' in checkpoint:
-        incepv3model.load_state_dict(checkpoint['state_dict'])
-    else:
-        incepv3model.load_state_dict(checkpoint)
+    #checkpoint = torch.load('denoise_incepv3_012.ckpt')
+    #if isinstance(checkpoint, dict) and 'state_dict' in checkpoint:
+        #incepv3model.load_state_dict(checkpoint['state_dict'])
+    #else:
+        #incepv3model.load_state_dict(checkpoint)
     
     checkpoint = torch.load('denoise_rex_001.ckpt')
     if isinstance(checkpoint, dict) and 'state_dict' in checkpoint:
@@ -154,13 +154,13 @@ def main():
         rexmodel.load_state_dict(checkpoint)
 
     if not args.no_gpu:
-        inresmodel = inresmodel.cuda()
+        #inresmodel = inresmodel.cuda()
         resmodel = resmodel.cuda()
-        incepv3model = incepv3model.cuda()
+        #incepv3model = incepv3model.cuda()
         rexmodel = rexmodel.cuda()
-    inresmodel.eval()
+    #inresmodel.eval()
     resmodel.eval()
-    incepv3model.eval()
+    #incepv3model.eval()
     rexmodel.eval()
 
 
@@ -203,7 +203,7 @@ def main():
                 logits = model(input_var)
                 labels = logits.max(1)[1]
                 labels_index = labels.data.tolist() 
-                print(len(labels_index))
+                #print(len(labels_index))
                 iter_labels[range(len(iter_labels)), labels_index, j] = 1
         final_labels = np.sum(iter_labels, axis=-1)
         labels = np.argmax(final_labels, 1)
