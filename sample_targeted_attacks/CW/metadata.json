@@ -1,0 +1,6 @@
+{
+  "type": "attack",
+  "container": "xjiao/cleverhans:cpu",
+  "container_gpu": "xjiao/cleverhans:gpu",
+  "entry_point": "run_attack.sh"
+}
