@@ -104,4 +104,9 @@ mv ../../sample_defenses/Random_Guided_Denoise/checkpoints.tar.gz .
 tar -xvzf checkpoints.tar.gz
 rm checkpoints.tar.gz
 
+# Download checkpoints for ucnesl_targeted
+cd "${SCRIPT_DIR}/ucnesl_targeted/"
+cp ../target_class_toshi_k/adv_* .
+cp ../target_class_toshi_k/ens_adv_* .
+cp ../target_class_toshi_k/inception_v3.ckpt .
 

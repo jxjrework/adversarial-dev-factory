@@ -90,6 +90,11 @@ Toolkit includes examples of attacks and defenses in the following directories:
      [[code](https://github.com/sangxia/nips-2017-adversarial)]
      * Three models are attacked; inception_v3.ckpt, adv_inception_v3.ckpt, ens_adv_inception_resnet_v2.ckpt.
      * Number of iteration is set to 20.
+  * `sample_targeted_attacks/ucnesl_targeted/` - Submission for NIPS 2017: (6th place).
+     [[code](https://github.com/malzantot/nips2017_adversarial)]
+     * Three models are attacked; inception_v3.ckpt, adv_inception_v3.ckpt, ens_adv_inception_resnet_v2.ckpt. 
+     * Number of iteration is set to 200. At each iteration, get the average of all 3 x_adv
+     * It has a if-conditon check to make sure time is not over the limit.
 
   * `sample_targeted_attacks/iter_target_class/` - iterative target class
     attack. This is a pretty good white-box attack,
