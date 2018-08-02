@@ -80,6 +80,11 @@ mv ../ens_adv_inception_resnet_v2/ens_adv_inception_resnet_v2_2017_08_18.tar.gz 
 tar -xvzf ens_adv_inception_resnet_v2_2017_08_18.tar.gz
 rm ens_adv_inception_resnet_v2_2017_08_18.tar.gz
 
+# checkpoints for Diff_cv2_Random_Denoise_14_pytorch
+cd "${SCRIPT_DIR}/Diff_Random_Denoise_14_pytorch/"
+mv ../Diff_cv2_Random_Denoise_14/checkpoints.tar.gz .
+tar -xvzf checkpoints.tar.gz
+
 # checkpoints for Diff_Random_Denoise_14_pytorch
 cd "${SCRIPT_DIR}/Diff_Random_Denoise_14_pytorch/"
 mv ../Diff_Random_Denoise_14/checkpoints.tar.gz .
