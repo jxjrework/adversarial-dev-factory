@@ -34,4 +34,4 @@ python "${SCRIPT_DIR}/targetAttack.py" \
   --epsilon="${MAX_EPSILON}" \
   --save_all_classification
 
-echo "Output is saved in directory '${WORKING_DIR}/output_dir'"
+echo "adv images saved in directory '${WORKING_DIR}/adv_images'"
