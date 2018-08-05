@@ -1,0 +1,3 @@
+imageName,predictedClass,targetClass,success
+001_iterNum_EOT_toshiK_1.png,283,983,negative
+002_iterNum_EOT_toshiK_2.png,345,345,positive
