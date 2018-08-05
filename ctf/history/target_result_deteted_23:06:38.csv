@@ -1,0 +1,8 @@
+Time,ID,orig,target,pred,success,eps,imgHead
+23:05:31,5,34,309,34,neg,32,momentum_asfef
+23:05:34,4,34,74,34,neg,32,ToshiK_a64
+23:05:37,2,34,260,34,neg,16,momentum_asfef
+23:05:40,3,34,851,34,neg,8,ToshiK_a64
+23:05:43,3,34,851,34,neg,16,momentum_asfef
+23:05:46,3,34,851,34,neg,16,momentum_asfef_34
+23:05:49,5,34,309,34,neg,16,ToshiK_a64
