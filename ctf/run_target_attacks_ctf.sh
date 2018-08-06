@@ -25,6 +25,7 @@ mkdir "${WORKING_DIR}/intermediate_results"
 
 cp -R "${TARGETED_ATTACKS_DIR}"/* "${WORKING_DIR}/targeted_attacks"
 cp -R "${DATASET_DIR}"/* "${WORKING_DIR}/dataset"
+cp "${SCRIPT_DIR}/configTargetedAttackChosenList.py" "${WORKING_DIR}/targeted_attacks/configTargetedAttackChosenList.py"
 
 echo "Running attacks and defenses"
 python "${SCRIPT_DIR}/targetAttack.py" \

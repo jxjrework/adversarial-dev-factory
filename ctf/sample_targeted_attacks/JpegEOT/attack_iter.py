@@ -23,6 +23,12 @@ import PIL.Image
 
 from PIL import Image
 
+import sys
+parentPath = os.path.abspath("..")
+if parentPath not in sys.path:
+    sys.path.insert(0, parentPath)
+from configTargetedAttackChosenList import _targetAttackChosenDiction
+
 slim = tf.contrib.slim
 
 
@@ -108,7 +114,10 @@ def load_images(input_dir, batch_shape):
     filepaths = tf.gfile.Glob(os.path.join(input_dir, '*.png'))
 
     for count, filepath in enumerate(filepaths):
-
+        defenseID = filepath.split('/')[-1][:-4].split('_')[-1]        
+        print('!!!!!!! defenseID = {0}'.format(defenseID))
+        if int(defenseID) not in _targetAttackChosenDiction['JpegEOT']:
+            continue
         with tf.gfile.Open(filepath, 'rb') as f:
             image = np.array(Image.open(f).convert('RGB')).astype(np.float) / 255.0
         # Images for inception classifier are normalized to be in [-1, 1] interval.

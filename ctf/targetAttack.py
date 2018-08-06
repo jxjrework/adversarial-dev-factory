@@ -12,7 +12,7 @@ import subprocess
 import numpy as np
 from PIL import Image
 
-from configTargetedAttackChosenList import _targetedAttackChosenList 
+from configTargetedAttackChosenList import _targetAttackChosenDiction 
 """
 python "${SCRIPT_DIR}/targetAttack.py" \
   --targeted_attacks_dir="${WORKING_DIR}/targeted_attacks" \
@@ -451,9 +451,8 @@ def main():
   targeted_attacks = [
       a for a in read_submissions_from_directory(args.targeted_attacks_dir,
                                                  args.use_gpu)
-      if isinstance(a, Attack) and a.name in _targetedAttackChosenList
-  ]
-  
+      if isinstance(a, Attack) and a.name in _targetAttackChosenDiction
+  ]  
 
   print('Found tageted attacks: ', [a.name for a in targeted_attacks])
   # Prepare subdirectories for intermediate results.
