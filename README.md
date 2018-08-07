@@ -104,6 +104,8 @@ Toolkit includes examples of attacks and defenses in the following directories:
     which actually does not provide any defense against adversarial examples.
   * `sample_defenses/adv_inception_v3/` - adversarially trained Inception v3
     model from Adversarial Machine Learning at Scale. [[paper](https://arxiv.org/abs/1611.01236)]
+  * `sample_defenses/inceptionv4_model/` - baseline Inception v4 classifier
+    model from Inception-v4, Inception-ResNet and the Impact of Residual Connections on Learning. [[paper](https://arxiv.org/abs/1602.07261)]
   * `sample_defenses/ens_adv_inception_resnet_v2/` - Inception ResNet v2
     model which is adversarially trained against an ensemble of different
     kind of adversarial examples. Model is described in

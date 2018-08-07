@@ -23,6 +23,13 @@ wget http://download.tensorflow.org/models/adv_inception_v3_2017_08_18.tar.gz
 tar -xvzf adv_inception_v3_2017_08_18.tar.gz
 rm adv_inception_v3_2017_08_18.tar.gz
 
+# Download adversarially trained inception v4 checkpoint
+# into inceptionv4_model subdirectory
+cd "${SCRIPT_DIR}/inceptionv4_model/"
+wget http://download.tensorflow.org/models/inception_v4_2016_09_09.tar.gz
+tar -xvzf adv_inception_v4_2016_09_09.tar.gz
+rm inception_v4_2016_09_09.tar.gz
+
 # Download ensemble adversarially trained inception resnet v2 checkpoint
 # into ens_adv_inception_resnet_v2 subdirectory
 cd "${SCRIPT_DIR}/ens_adv_inception_resnet_v2/"
