@@ -36,6 +36,12 @@ cd "${SCRIPT_DIR}/ens_adv_inception_resnet_v2/"
 wget http://download.tensorflow.org/models/ens_adv_inception_resnet_v2_2017_08_18.tar.gz
 tar -xvzf ens_adv_inception_resnet_v2_2017_08_18.tar.gz
 
+# Download ensemble adversarially trained inception resnet v2 checkpoint
+# into skimage_ens_adv_iresv2 subdirectory
+cd "${SCRIPT_DIR}/skimage_ens_adv_ires_v2/"
+cp ../ens_adv_inception_resnet_v2/ens_adv_inception_resnet_v2_2017_08_18.tar.gz .
+tar -xvzf ens_adv_inception_resnet_v2_2017_08_18.tar.gz
+
 
 # Also copy to defense random_padding_iresV2
 cd "${SCRIPT_DIR}/Random_padding_IresV2/"
@@ -88,12 +94,16 @@ tar -xvzf ens_adv_inception_resnet_v2_2017_08_18.tar.gz
 rm ens_adv_inception_resnet_v2_2017_08_18.tar.gz
 
 # checkpoints for Diff_cv2_Random_Denoise_14_pytorch
-cd "${SCRIPT_DIR}/Diff_Random_Denoise_14_pytorch/"
-mv ../Diff_cv2_Random_Denoise_14/checkpoints.tar.gz .
+cd "${SCRIPT_DIR}/Diff_cv2_Random_Denoise_14_pytorch/"
+mv ../Diff_Random_Denoise_14/checkpoints.tar.gz .
 tar -xvzf checkpoints.tar.gz
 
 # checkpoints for Diff_Random_Denoise_14_pytorch
 cd "${SCRIPT_DIR}/Diff_Random_Denoise_14_pytorch/"
-mv ../Diff_Random_Denoise_14/checkpoints.tar.gz .
+mv ../Diff_cv2_Random_Denoise_14_pytorch/checkpoints.tar.gz .
 tar -xvzf checkpoints.tar.gz
-rm checkpoints.tar.gz
+
+# checkpoints for Diff_cv2_Random_Denoise_14_pytorch_kmean
+cd "${SCRIPT_DIR}/Diff_cv2_Random_Denoise_14_pytorch_kmean/"
+mv ../Diff_Random_Denoise_14_pytorch/checkpoints.tar.gz .
+tar -xvzf checkpoints.tar.gz

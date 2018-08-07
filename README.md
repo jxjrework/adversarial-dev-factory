@@ -21,12 +21,13 @@ Following software required to use this package:
 
 * Python 2.7 with installed [Numpy](http://www.numpy.org/)
   and [Pillow](https://python-pillow.org/) packages.
-* [Docker](https://www.docker.com/)
 
-Additionally, all provided examples are written with use of
-the [TensorFlow](https://www.tensorflow.org/).
-Thus you may find useful to install TensorFlow to experiment with the examples,
-however this is not strictly necessary.
+Optional
+* [TensorFlow](https://www.tensorflow.org/)
+* [PyTorch](https://pytorch.org/)
+* [OpenCV](https://opencv.org/)
+* [skimage](https://scikit-image.org/)
+* [Docker](https://www.docker.com/)
 
 ### Installation procedure
 
@@ -119,7 +120,9 @@ Toolkit includes examples of attacks and defenses in the following directories:
   * `sample_defenses/Random_Guided_Denoise/` - Our implementaion of stacking randomization (random resizing and random padding) and Denoise. Iteration = 5 (10 seconds processing 16 pictures)
   * `sample_defenses/Diff_Random_Denoise_14/` - Our implementaion of difference filter of output labels of randomization (random resizing and random padding) and Denoise_14. Output label will be 0 if two labels don't match. 
   * `sample_defenses/Diff_Random_Denoise_14_pytorch/` - Our pure pytorch implementaion of difference filter of output labels of randomization (random resizing and random padding) and Denoise_14. Output label will be 0 if two labels don't match. Here is ramdon padding is on a **inception_resnet_v2** instead of ensemble_adv_inception_resnet_v2
-  * `sample_defenses/Diff_cv2_Random_Denoise_14_pytorch/` - Add cv2 filter before random padding on top of 'sample_defenses/Diff_Random_Denoise_14_pytorch/'. 
+  * `sample_defenses/skimage_ens_adv_iresv2/` - Image processing with functions provided by skimage.restore.
+  * `sample_defenses/Diff_cv2_Random_Denoise_14_pytorch/` - Add cv2 filter before random padding on top of 'sample_defenses/Diff_Random_Denoise_14_pytorch/'
+  * `sample_defenses/Diff_cv2_Random_Denoise_14_pytorch_kmean/` - Add kmean filter to the end. This is our final submission for CAAD CTF 2018. 
 
 ### Structure of attacks and defenses
 
