@@ -1,12 +1,14 @@
 dataset/images/
 dataset/images2/
+dataset/images3/
 *ckpt*
 tmp.*/
 *.pyc
 output/
 *.zip
 tmp/
+tmp2/
 *.pth
 *.png
 *.jpeg
-
+*.ipynb_checkpoints*
