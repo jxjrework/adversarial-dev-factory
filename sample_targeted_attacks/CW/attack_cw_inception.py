@@ -202,8 +202,8 @@ def main(_):
     x_max = tf.clip_by_value(x_input + eps, -1.0, 1.0)
     x_min = tf.clip_by_value(x_input - eps, -1.0, 1.0)
 
-    #model = InceptionModel(num_classes)
-    model =  IrNetModel(num_classes, scope='sc1')
+    model = InceptionModel(num_classes)
+    #model =  IrNetModel(num_classes, scope='sc1')
  
     # Instantiate a CW attack object
     cw = CarliniWagnerL2(model, back='tf', sess=sess)
@@ -220,18 +220,18 @@ def main(_):
                  'clip_max': 1.}
     x_adv = cw.generate(x_input, **cw_params)
     # restore inveptionV3
-    # saver = tf.train.Saver(slim.get_model_variables())
+    saver = tf.train.Saver(slim.get_model_variables())
 
     all_vars = [var for var in tf.global_variables()]
      
     all_vars = tf.global_variables()
 
-    model_vars = [k for k in all_vars if k.name.startswith('sc1')]
+    #model_vars = [k for k in all_vars if k.name.startswith('sc1')]
 
     # name of variable `my_var:0` corresponds `my_var` for loader
-    model_keys = [s.name.replace('sc1', 'InceptionResnetV2')[:-2] for s in model_vars]
+    #model_keys = [s.name.replace('sc1', 'InceptionV3')[:-2] for s in model_vars]
 
-    saver = tf.train.Saver(dict(zip(model_keys, model_vars)))
+    #saver = tf.train.Saver(dict(zip(model_keys, model_vars)))
 
 
     print(len(all_vars))

@@ -18,4 +18,4 @@ python attack_cw.py \
   --input_dir="${INPUT_DIR}" \
   --output_dir="${OUTPUT_DIR}" \
   --max_epsilon="${MAX_EPSILON}" \
-  --checkpoint_path=inception_v3.ckpt
+  --checkpoint_path=ens_adv_inception_resnet_v2.ckpt
