@@ -3,15 +3,6 @@
 
 This is modified from the development toolkit for the
 [Competition on Adversarial Attacks and Defenses 2018](http://caad.geekpwn.org/)
-Following software required to use this package:
-
-This toolkit is based on toolkit for NIPS17 competition which was released as part of [Cleverhans](https://github.com/tensorflow/cleverhans/blob/master/LICENSE) library under [MIT License](https://github.com/tensorflow/cleverhans/blob/master/LICENSE)
-
-* Dev dataset which participants can use for development and testing of their
-  attacks and defenses
-* Sample adversarial attacks
-* Sample adversarial defenses
-* Tool to run attacks against defenses and compute score.
 
 ## Installation
 
